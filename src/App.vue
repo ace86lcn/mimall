@@ -7,8 +7,12 @@
 <script>
 // eslint-disable-next-line no-unused-vars
 import axios from 'axios'
+// eslint-disable-next-line no-unused-vars
+import storage from './storage'
 export default {
-  name: 'App'
+  name: 'App',
+  mounted () {
+  }
 }
 </script>
 <style>
