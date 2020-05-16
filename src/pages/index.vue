@@ -1,8 +1,6 @@
 <template>
     <div>
-        <nav-header></nav-header>
-        <router-view></router-view>
-        <nav-footer></nav-footer>
+      index
     </div>
 </template>
 <script>
@@ -10,6 +8,6 @@ export default {
   name: 'index'
 }
 </script>
-<style lang="stylus">
+<style >
 
 </style>

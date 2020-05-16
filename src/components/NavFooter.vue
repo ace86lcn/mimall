@@ -1,11 +1,11 @@
 <template>
-    <div></div>
+    <div>NavFooter</div>
 </template>
 <script>
 export default {
   name: 'NavFooter'
 }
 </script>
-<style lang="stylus">
+<style>
 
 </style>
