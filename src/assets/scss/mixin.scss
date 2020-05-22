@@ -4,6 +4,7 @@
     justify-content: $hov;
     align-items: $clo;
 }
+// 背景图片地址
 @mixin bgImg($w:0,$h:0,$img:'',$size:contain) {
     display: inline-block;
     width: $w;
