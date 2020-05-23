@@ -4,6 +4,7 @@ import Vue from 'vue'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import VueLazyLoad from 'vue-lazyload'
+import VueCookie from 'vue-cookie'
 import App from './App'
 import router from './router'
 
@@ -19,14 +20,21 @@ axios.interceptors.response.use(function (response) {
   // eslint-disable-next-line eqeqeq
   } else if (res.status == 10) {
     window.location.href = '/#/login'
-  } else {
     alert(res.msg)
+    return Promise.reject(res)
+  } else {
+    // Message.warning(res.msg)
+    return Promise.reject(res)
   }
+}, (error) => {
+  return Promise.reject(error)
 })
 Vue.use(VueAxios, axios)
+Vue.use(VueCookie)
 Vue.use(VueLazyLoad, {
   loading: './../static/imgs/loading-svg/loading-bars.svg'
 })
+// Vue.prototype.$message = Message
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

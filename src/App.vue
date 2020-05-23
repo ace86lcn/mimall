@@ -12,6 +12,20 @@ import storage from './storage'
 export default {
   name: 'App',
   mounted () {
+    this.getUser()
+    this.getCarCount()
+  },
+  methods: {
+    getUser () {
+      this.axios.get('/user').then(() => {
+
+      })
+    },
+    getCarCount () {
+      this.axios.get('/carts/products/sum').then(() => {
+
+      })
+    }
   }
 }
 </script>

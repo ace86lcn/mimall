@@ -118,7 +118,7 @@ export default {
   name: 'NavHeader',
   data () {
     return {
-      userName: 'ace86lcn',
+      userName: '',
       phoneList: []
     }
   },
