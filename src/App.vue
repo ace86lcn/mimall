@@ -13,17 +13,17 @@ export default {
   name: 'App',
   mounted () {
     this.getUser()
-    this.getCarCount()
+    this.getCartCount()
   },
   methods: {
     getUser () {
-      this.axios.get('/user').then(() => {
-
+      this.axios.get('/user').then((res) => {
+        this.$store.dispatch('saveUserName', res.username)
       })
     },
-    getCarCount () {
-      this.axios.get('/carts/products/sum').then(() => {
-
+    getCartCount () {
+      this.axios.get('/carts/products/sum').then((res) => {
+        this.$store.dispatch('saveCartCount', res)
       })
     }
   }

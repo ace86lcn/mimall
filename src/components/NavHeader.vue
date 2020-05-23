@@ -12,7 +12,7 @@
             <a href="javascript:;" v-if="userName">{{userName}}</a>
             <a href="javascript:;" v-if="!userName" @click="login">登录</a>
             <a href="javascript:;" v-if="userName">我的订单</a>
-            <a href="javascript:;" class="my-cart" @click="goToCart"><span class="icon-cart"></span>购物车</a>
+            <a href="javascript:;" class="my-cart" @click="goToCart"><span class="icon-cart"></span>购物车({{cartCount}})</a>
           </div>
         </div>
       </div>
@@ -114,11 +114,11 @@
     </div>
 </template>
 <script>
+// import {mapState} from 'Vuex'
 export default {
   name: 'NavHeader',
   data () {
     return {
-      userName: '',
       phoneList: []
     }
   },
@@ -128,6 +128,15 @@ export default {
       if (!val) return '0.00'
       return '￥' + val.toFixed(2) + '元'
     }
+  },
+  computed: {
+    userName () {
+      return this.$store.state.username
+    },
+    cartCount () {
+      return this.$store.state.cartCount
+    },
+    // ...mapState(['userName', 'cartCount'])
   },
   methods: {
     getProductList () {
@@ -147,10 +156,16 @@ export default {
     },
     login () {
       this.$router.push('/login')
+    },
+    getCartCount () {
+      this.axios.get('/carts/products/sum').then((res = 0) => {
+        this.$store.dispatch('saveCartCount', res)
+      })
     }
   },
   mounted () {
     this.getProductList()
+    this.getCartCount()
   }
 }
 </script>
