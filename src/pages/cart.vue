@@ -34,7 +34,7 @@
                   </div>
                 </div>
                 <div class="item-total">{{item.productTotalPrice}}</div>
-                <div class="item-del" @click="del"></div>
+                <div class="item-del" @click="delProduct(item)"></div>
               </li>
             </ul>
           </div>
@@ -57,7 +57,7 @@
       btnType="1"
       modalType="middle"
       :showModal="showModal"
-      @submit="delProduct"
+      @submit="del"
       @cancel="showModal=false"
       >
       <template v-slot:body>
@@ -107,12 +107,13 @@ export default {
       let selected = item.productSelected
       if (type === '-') {
         if (quantity === 1) {
-          alert('商品至少保留一件')
+          this.$message.warning('商品至少保留一件')
+          return
         }
         --quantity
       } else if (type === '+') {
         if (quantity > item.productStock) {
-          alert('购买数量不能超过库存数量')
+          this.$message.warning('购买数量不能超过库存数量')
         }
         ++quantity
       } else {
@@ -125,17 +126,16 @@ export default {
         this.renderData(res)
       })
     },
+    // 待解决
+    del () {
+      window.addEventListener('del', this.delProduct)
+    },
     // 删除购物车商品
     delProduct (item) {
-      let id = this.list.productId
-      console.log(id)
-      // this.axios.delete(`/carts/${id}`).then((res) => {
-      //   alert('删除成功')
-      //   this.renderData(res)
-      // })
-    },
-    del () {
-      this.showModal = true
+      this.axios.delete(`/carts/${item.productId}`).then((res) => {
+        this.$message.success('删除成功')
+        this.renderData(res)
+      })
     },
     // 结算
     order () {
