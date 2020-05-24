@@ -60,18 +60,18 @@ export default new Router({
       component: Order,
       children: [
         {
-          path: '/orderConfirm/:id',
-          name: 'orderConfirm',
+          path: 'confirm',
+          name: 'order-confirm',
           component: OrderConfirm
         },
         {
-          path: '/orderList/:id',
-          name: 'orderList',
+          path: 'list',
+          name: 'order-list',
           component: OrderList
         },
         {
-          path: '/orderPay/:id',
-          name: 'orderPay',
+          path: 'pay',
+          name: 'order-pay',
           component: OrderPay
         }
       ]
