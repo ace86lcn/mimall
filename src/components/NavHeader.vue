@@ -135,7 +135,7 @@ export default {
     },
     cartCount () {
       return this.$store.state.cartCount
-    },
+    }
     // ...mapState(['userName', 'cartCount'])
   },
   methods: {
