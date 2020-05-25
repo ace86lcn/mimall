@@ -44,7 +44,7 @@
             <div class="phone-total">总计：{{product.price}}元</div>
           </div>
           <div class="btn-group">
-            <a href="javascript:;" class="btn btn-huge fl" @click="addCart">加入购物车</a>
+            <a href="/#/cart" class="btn btn-huge fl" @click="addCart">加入购物车</a>
           </div>
         </div>
       </div>
@@ -89,7 +89,6 @@ export default{
   },
   mounted () {
     this.getProductInfo()
-    this.addCart()
   },
   methods: {
     getProductInfo () {

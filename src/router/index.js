@@ -6,7 +6,7 @@ import Index from '@/pages/index'
 import Product from '@/pages/product'
 import Detail from '@/pages/detail'
 import Cart from '@/pages/cart'
-import AliPay from '@/pages/aliPay'
+import AliPay from '@/pages/alipay'
 import Order from '@/pages/order'
 import OrderConfirm from '@/pages/orderConfirm'
 import OrderList from '@/pages/orderList'
@@ -50,11 +50,6 @@ export default new Router({
       component: Cart
     },
     {
-      path: '/aliPay',
-      name: 'aliPay',
-      component: AliPay
-    },
-    {
       path: '/order',
       name: 'order',
       component: Order,
@@ -73,6 +68,11 @@ export default new Router({
           path: 'pay',
           name: 'order-pay',
           component: OrderPay
+        },
+        {
+          path: 'alipay',
+          name: 'alipay',
+          component: AliPay
         }
       ]
     }

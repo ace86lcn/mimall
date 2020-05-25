@@ -52,7 +52,7 @@
     </div>
       <nav-footer></nav-footer>
       <modal
-      title="提示"
+      title="删除确认"
       sureText="确定"
       btnType="1"
       modalType="middle"
@@ -84,7 +84,9 @@ export default {
       allChecked: false, // 是否全选
       cartTotalPrice: 0, // 商品总金额
       checkedNum: 0, // 选中商品数量
-      showModal: false
+      showModal: false,
+      userAction: '', // 用户行为 0：新增 1：编辑 2：删除
+      checkedItem: {} // 选中的商品对象
     }
   },
   methods: {
@@ -126,16 +128,26 @@ export default {
         this.renderData(res)
       })
     },
-    // 待解决
+    // 封装删除方法
     del () {
-      window.addEventListener('del', this.delProduct)
-    },
-    // 删除购物车商品
-    delProduct (item) {
-      this.axios.delete(`/carts/${item.productId}`).then((res) => {
-        this.$message.success('删除成功')
-        this.renderData(res)
+      let {checkedItem, userAction} = this
+      let method = ''
+      let url = ''
+      if (userAction === 2) {
+        method = 'delete'
+        url = `/carts/${checkedItem.productId}`
+      }
+      this.axios[method](url).then(() => {
+        this.showModal = false
+        this.getCartList()
+        this.$message.success('操作成功')
       })
+    },
+    // 删除购物车商品弹窗
+    delProduct (item) {
+      this.userAction = 2
+      this.showModal = true
+      this.checkedItem = item
     },
     // 结算
     order () {
