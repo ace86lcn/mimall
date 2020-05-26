@@ -12,7 +12,7 @@
             <a href="javascript:;" v-if="userName">{{userName}}</a>
             <a href="javascript:;" v-if="!userName" @click="login">登录</a>
             <a href="javascript:;" v-if="userName" @click="goOut">退出</a>
-            <a href="javascript:;" v-if="userName">我的订单</a>
+            <a href="javascript:;" v-if="userName" @click="goPay">我的订单</a>
             <a href="javascript:;" class="my-cart" @click="goToCart"><span class="icon-cart"></span>购物车({{cartCount}})</a>
           </div>
         </div>
@@ -170,6 +170,9 @@ export default {
         this.$store.dispatch('saveUserName', '')
         this.$store.dispatch('saveCartCount', '0')
       })
+    },
+    goPay () {
+      window.open('/#/order/list', '_blank')
     }
   },
   mounted () {
