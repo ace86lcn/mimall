@@ -48,7 +48,16 @@ module.exports = {
     // https://vue-loader.vuejs.org/en/options.html#cachebusting
     cacheBusting: true,
 
-    cssSourceMap: true
+    cssSourceMap: true,
+     // publicPath:'/app',
+  // outputDir:'dist',
+  // indexPath:'index2.html',
+  // lintOnSave:false,
+  //预加载方案
+    productionSourceMap:true,
+    chainWebpack:(config)=>{
+      config.plugins.delete('prefetch');
+    }
   },
 
   build: {
@@ -63,8 +72,6 @@ module.exports = {
     /**
      * Source Maps
      */
-
-    productionSourceMap: true,
     // https://webpack.js.org/configuration/devtool/#production
     devtool: '#source-map',
 
